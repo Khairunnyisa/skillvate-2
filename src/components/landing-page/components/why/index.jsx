@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Grid } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import CardWhy from "../../../cards/cardWhy";
 import SectionBadge from "../../../badge/sectionBadge";
 
@@ -13,7 +13,6 @@ const Why = () => {
     >
       <Container
         maxWidth="lg"
-        disableGutters
         sx={{
           px: { xs: 2, md: 4 },
           textAlign: "center",
@@ -21,84 +20,87 @@ const Why = () => {
       >
         <SectionBadge text="Kenapa sih kamu harus training di Skillvate?" />
 
-        <Grid
-          container
-          spacing={3}
-          alignItems="stretch"
-          sx={{
-            width: "100%",
-            mx: "auto",
-            justifyContent: "center",
-          }}
-        >
-          {/* LEFT */}
-          <Grid item xs={12} md={3} sx={{ display: "flex" }}>
-            <Grid container spacing={3} direction="column" sx={{ flex: 1 }}>
-              <Grid item sx={{ flex: 1 }}>
-                <CardWhy
-                  icon="static/images/why/why-icon1.svg"
-                  title="Lorem Ipsum"
-                />
-              </Grid>
-              <Grid item sx={{ flex: 1 }}>
-                <CardWhy
-                  icon="static/images/why/why-icon1.svg"
-                  title="Lorem Ipsum"
-                />
-              </Grid>
-            </Grid>
-          </Grid>
+        {/* 🔥 MAIN FLEX (INI KUNCI) */}
+        <Box
+  sx={{
+    display: "flex",
+    gap: 3,
+    alignItems: "stretch",
+    justifyContent: "center",
 
-          {/* CENTER */}
-          <Grid item xs={12} md={6} sx={{ display: "flex" }}>
-            <Box
-              sx={{
-                flex: 1,
-                borderRadius: "28px",
-                px: 12,
-                py: 5,
-                color: "#fff",
-                position: "relative",
-                overflow: "hidden",
-                background: "linear-gradient(135deg, #6C5CE7 0%, #8E7CFF 100%)",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Typography variant="h2">Why Skillvate?</Typography>
+    flexWrap: { xs: "wrap", md: "nowrap" }, // 🔥 KUNCI
+  }}
+>
+  {/* LEFT */}
+  <Box
+    sx={{
+      width: { xs: "100%", md: 260 }, // 🔥 full di mobile
+      display: "flex",
+      flexDirection: "column",
+      gap: 3,
+    }}
+  >
+    <CardWhy
+      icon="static/images/why/why-icon1.svg"
+      title="Improved team capability & readiness."
+    />
+    <CardWhy
+      icon="static/images/why/why-icon1.svg"
+      title="Accelerated technology adoption.​"
+    />
+  </Box>
 
-              <Box
-                component="img"
-                src="static/images/why/why-img (1).png"
-                sx={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: "75%",
-                }}
-              />
-            </Box>
-          </Grid>
+  {/* CENTER */}
+  <Box
+    sx={{
+      width: { xs: "100%", md: 500 }, // 🔥 full di mobile
+      borderRadius: "28px",
+      px: { xs: 4, md: 8 }, // 🔥 padding mobile disesuaikan
+      py: { xs: 6, md: 5 },
+      color: "#fff",
+      position: "relative",
+      overflow: "hidden",
+      background:
+        "linear-gradient(135deg, #6C5CE7 0%, #8E7CFF 100%)",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    }}
+  >
+    <Typography variant="h2">Why Skillvate?</Typography>
 
-          {/* RIGHT */}
-          <Grid item xs={12} md={3} sx={{ display: "flex" }}>
-            <Grid container spacing={3} direction="column" sx={{ flex: 1 }}>
-              <Grid item sx={{ flex: 1 }}>
-                <CardWhy
-                  icon="static/images/why/why-icon1.svg"
-                  title="Lorem Ipsum"
-                />
-              </Grid>
-              <Grid item sx={{ flex: 1 }}>
-                <CardWhy
-                  icon="static/images/why/why-icon1.svg"
-                  title="Lorem Ipsum"
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+    <Box
+      component="img"
+      src="static/images/why/why-img (1).png"
+      sx={{
+        position: "absolute",
+        bottom: 0,
+        left: "50%",
+        transform: "translateX(-50%)",
+        width: { xs: "60%", md: "75%" }, // 🔥 biar gak kegedean di mobile
+      }}
+    />
+  </Box>
+
+  {/* RIGHT */}
+  <Box
+    sx={{
+      width: { xs: "100%", md: 260 }, // 🔥 full di mobile
+      display: "flex",
+      flexDirection: "column",
+      gap: 3,
+    }}
+  >
+    <CardWhy
+      icon="static/images/why/why-icon1.svg"
+      title="Learn by doing, boost productivity."
+    />
+    <CardWhy
+      icon="static/images/why/why-icon1.svg"
+      title="Lorem Ipsum "
+    />
+  </Box>
+</Box>
       </Container>
     </Box>
   );

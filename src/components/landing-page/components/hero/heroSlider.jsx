@@ -15,21 +15,21 @@ const HeroSlider = () => {
     >
       <SwiperSlide>
         <img
-          src="public/static/images/hero/sliderHero-1.png"
+          src="/static/images/hero/sliderHero-1.png"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </SwiperSlide>
 
       <SwiperSlide>
         <img
-          src="public/static/images/hero/sliderHero-1.png"
+          src="/static/images/hero/sliderHero-1.png"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </SwiperSlide>
 
       <SwiperSlide>
         <img
-          src="public/static/images/hero/sliderHero-1.png"
+          src="/static/images/hero/sliderHero-1.png"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </SwiperSlide>

@@ -15,18 +15,20 @@ const Partnership = () => {
   return (
     <Box
       sx={{
-        mt:35,
+        mt: 35,
         py: 10,
         backgroundImage: "url('/static/images/partnership/bg-partnership.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <Container maxWidth="lg"
+      <Container
+        maxWidth="lg"
         sx={{
           px: { xs: 2, md: 4 },
           textAlign: "center", // biar rapi di mobile & desktop
-        }}>
+        }}
+      >
         {/* TITLE */}
         <Typography
           variant="h2"
@@ -46,8 +48,12 @@ const Partnership = () => {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 6,
+            gridTemplateColumns: {
+              xs: "repeat(2, 1fr)", // 📱 mobile
+              sm: "repeat(3, 1fr)", // tablet kecil
+              md: "repeat(4, 1fr)", // desktop (TETAP SAMA)
+            },
+            gap: { xs: 4, md: 6 }, // 🔥 spacing responsive
             alignItems: "center",
             justifyItems: "center",
           }}
@@ -58,7 +64,7 @@ const Partnership = () => {
               component="img"
               src={logo}
               sx={{
-                height: 40,
+                height: { xs: 30, md: 40 }, // 🔥 biar gak kegedean di mobile
                 objectFit: "contain",
                 filter: "grayscale(100%)",
                 opacity: 0.7,

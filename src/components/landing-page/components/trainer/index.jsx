@@ -1,30 +1,34 @@
 import { Box, Container, Typography, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const leftTop = [
   "/static/images/trainer/trainer-1.png",
-  "/static/images/trainer/trainer-1.png",
-  "/static/images/trainer/trainer-1.png",
+  "/static/images/trainer/trainer-2.png",
+  "/static/images/trainer/trainer-3.png",
 ];
 
 const leftBottom = [
-  "/static/images/trainer/trainer-1.png",
-  "/static/images/trainer/trainer-1.png",
+  "/static/images/trainer/trainer-4.png",
+  "/static/images/trainer/trainer-5.png",
+  "/static/images/trainer/trainer-6.png",
  
 ];
 
 const rightTop = [
- "/static/images/trainer/trainer-1.png",
-  "/static/images/trainer/trainer-1.png",
-  "/static/images/trainer/trainer-1.png",
+ "/static/images/trainer/trainer-7.png",
+  "/static/images/trainer/trainer-8.png",
+  "/static/images/trainer/trainer-9.png",
 ];
 
 const rightBottom = [
-   "/static/images/trainer/trainer-1.png",
-  "/static/images/trainer/trainer-1.png",
-  "/static/images/trainer/trainer-1.png",
+   "/static/images/trainer/trainer-10.png",
+  "/static/images/trainer/trainer-11.png",
+  "/static/images/trainer/trainer-12.png",
 ];
 
-const centerImage = "/static/images/trainer/trainer-1.png";
+const centerImage = [
+  "/static/images/trainer/trainer-13.png",
+];
 
 const Trainer = () => {
   return (
@@ -143,17 +147,17 @@ const Trainer = () => {
         </Box>
 
         {/* 🔥 TEXT BAWAH */}
-        <Box mt={10}>
-          <Typography variant="h4" fontWeight={700}>
-            Trusted By <span style={{ color: "#6C5CE7" }}>Trainers</span>
+        <Box mt={15}>
+          <Typography variant="h2" fontWeight={700}>
+            Trusted By <span style={{ color: "#6C5CE7", mb: 4}}>Trainers</span>
           </Typography>
 
-          <Typography sx={{ color: "#6B7280", mb: 4 }}>
+          <Typography variant="h3" sx={{ color: "#6B7280", mb: 4 }}>
             From Various Industries
           </Typography>
 
         
-          <Button variant="contained">Lorem Ipsum</Button>
+          <Button variant="contained" component={Link} to="/trainer">More Trainer</Button>
          
    
         </Box>

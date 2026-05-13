@@ -1,5 +1,6 @@
 import { Grid, Box } from "@mui/material";
 import DetailCard from "../../../cards/detailCardTraining";
+import { useNavigate } from "react-router-dom";
 
 const trainingData = [
   {
@@ -54,12 +55,25 @@ const trainingData = [
 ];
 
 const TrainingSection = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (title) => {
+    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+    navigate(`/training/${slug}`, {
+      state: { title },
+    });
+  };
   return (
     <Box sx={{ p: 4 }}>
       <Grid container spacing={4} justifyContent="center">
         {trainingData.map((item, index) => (
           <Grid item key={index}>
-            <DetailCard title={item.title} items={item.items} />
+            <DetailCard
+              title={item.title}
+              items={item.items}
+              onClick={handleClick} // 🔥 kirim ke card
+            />
           </Grid>
         ))}
       </Grid>

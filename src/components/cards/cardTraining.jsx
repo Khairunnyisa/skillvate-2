@@ -10,6 +10,7 @@ const CardTraining = ({
 }) => {
   return (
     <Box
+    onClick={() => onClick(title)} // 🔥 trigger navigate
       sx={{
         bgcolor: "#F5F5F5",
         borderRadius: "16px",

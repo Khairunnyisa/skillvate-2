@@ -37,9 +37,9 @@ const theme = createTheme({
       fontSize: 32,
       fontWeight: 600,
     },
-    h3: {
+    h4: {
       fontFamily: "Raleway, sans-serif",
-      fontSize: 20,
+      fontSize: 25,
       fontWeight: 600,
     },
     

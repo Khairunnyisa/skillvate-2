@@ -1,14 +1,13 @@
+import { useState } from "react";
+
 import ErrorIcon from "@mui/icons-material/Error";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
+
 import {
   Box,
   Typography,
   Paper,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
   TextField,
   Table,
   TableHead,
@@ -21,6 +20,8 @@ import {
 
 import CategoryFilter from "../category";
 import Dropdown from "../../../dropdown/dropdown";
+import RegisterModal from "../register-modal";
+
 
 const data = [
   {
@@ -68,8 +69,9 @@ const data = [
 ];
 
 const TableTraining = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
-    // 🌫️ BACKGROUND ABU
     <Box
       sx={{
         backgroundColor: "#F5F6FA",
@@ -78,7 +80,7 @@ const TableTraining = () => {
         pb: 10,
       }}
     >
-      {/* 🤍 CARD PUTIH */}
+      {/* CARD */}
       <Box
         sx={{
           maxWidth: "1300px",
@@ -89,7 +91,7 @@ const TableTraining = () => {
           boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
         }}
       >
-        {/* 🟡 PANDUAN */}
+        {/* PANDUAN */}
         <Box
           sx={{
             backgroundColor: "#FFF7E6",
@@ -104,57 +106,26 @@ const TableTraining = () => {
               display: "flex",
               alignItems: "center",
               gap: 1,
-
               mb: 1,
               color: "#FFAA00",
             }}
           >
-            <ErrorIcon
-              sx={{
-                fontSize: 40,
-                color: "#FFAA00",
-
-                p: "4px",
-              }}
-            />
+            <ErrorIcon sx={{ fontSize: 40 }} />
             Panduan
           </Typography>
 
           <ul style={{ margin: 0, paddingLeft: "20px" }}>
-            <li>
-              <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </Typography>
-            </li>
+            {[...Array(6)].map((_, i) => (
+              <li key={i}>
+                <Typography variant="body2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </Typography>
+              </li>
+            ))}
           </ul>
         </Box>
 
-        {/* 🔽 FILTER + SEARCH */}
+        {/* FILTER */}
         <Box
           sx={{
             display: "flex",
@@ -165,62 +136,21 @@ const TableTraining = () => {
             gap: 2,
           }}
         >
-          {/* LEFT (dropdown doang) */}
           <Box sx={{ display: "flex", gap: 2 }}>
             <Dropdown
               label="Semua Bulan"
               options={["Januari", "Februari", "Maret", "April"]}
             />
-
             <Dropdown label="Tersedia" options={["Tersedia", "Penuh"]} />
           </Box>
 
-          {/* RIGHT (entries + search) */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            {/* 🔥 SHOW ENTRIES */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <Typography variant="body2">Show</Typography>
+            <Typography variant="body2">Show 10 entries</Typography>
 
-              <Box
-                sx={{
-                  border: "1px solid #ddd",
-                  borderRadius: "10px",
-                  px: 2,
-                  py: 0.8,
-                  minWidth: "60px",
-                  textAlign: "center",
-                  backgroundColor: "#F5F6FA",
-                }}
-              >
-                <Typography variant="body2">10</Typography>
-              </Box>
-
-              <Typography variant="body2">entries</Typography>
-            </Box>
-
-            {/* 🔥 SEARCH */}
             <TextField
               size="small"
               placeholder="Search..."
-              sx={{
-                width: "260px",
-                "& .MuiOutlinedInput-root": {
-                  borderRadius: "10px",
-                  backgroundColor: "#Fffff",
-
-                  "& fieldset": {
-                    border: "1px solid #ddd",
-                  },
-
-                  "&:hover fieldset": {
-                    borderColor: "#ccc",
-                  },
-
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#7560E2",
-                  },
-                },
-              }}
+              sx={{ width: "260px" }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -234,45 +164,73 @@ const TableTraining = () => {
 
         <CategoryFilter onChange={(val) => console.log(val)} />
 
-        {/* 📊 TABLE */}
+        {/* TABLE */}
         <Paper
           sx={{
             borderRadius: "16px",
             overflow: "hidden",
-            boxShadow: "none",
             border: "1px solid #eee",
           }}
         >
           <Table>
             <TableHead sx={{ backgroundColor: "#FAFAFA" }}>
               <TableRow>
-                <TableCell>Materi</TableCell>
-                <TableCell>Tanggal</TableCell>
-                <TableCell>Waktu</TableCell>
-                <TableCell>Harga</TableCell>
-                <TableCell>Lokasi</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Aksi</TableCell>
+                {[
+                  "Materi",
+                  "Tanggal",
+                  "Waktu",
+                  "Harga",
+                  "Lokasi",
+                  "Status",
+                  "Aksi",
+                ].map((h) => (
+                  <TableCell key={h}>
+                    <Typography variant="body2" fontWeight={600}>
+                      {h}
+                    </Typography>
+                  </TableCell>
+                ))}
               </TableRow>
             </TableHead>
 
             <TableBody>
               {data.map((item, index) => (
                 <TableRow key={index}>
-                  <TableCell>{item.materi}</TableCell>
-                  <TableCell>{item.tanggal}</TableCell>
-                  <TableCell>{item.waktu}</TableCell>
-                  <TableCell>{item.harga}</TableCell>
-                  <TableCell>{item.lokasi}</TableCell>
+                  <TableCell>
+                    <Typography variant="body2">
+                      {item.materi}
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell>
+                    <Typography variant="body2">
+                      {item.tanggal}
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell>
+                    <Typography variant="body2">
+                      {item.waktu}
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell>
+                    <Typography variant="body2">
+                      {item.harga}
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell>
+                    <Typography variant="body2">
+                      {item.lokasi}
+                    </Typography>
+                  </TableCell>
 
                   <TableCell>
                     <Chip
                       label="Tersedia"
                       size="small"
                       sx={{
-                        px: 2,
-                        py: 2.5,
-                        borderRadius: "6px",
                         backgroundColor: "#F0FFF8",
                         color: "#18AB56",
                         fontWeight: 500,
@@ -281,7 +239,11 @@ const TableTraining = () => {
                   </TableCell>
 
                   <TableCell>
-                    <Button variant="contained" size="small" color="primary">
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={() => setOpenModal(true)}
+                    >
                       Daftar
                     </Button>
                   </TableCell>
@@ -291,6 +253,12 @@ const TableTraining = () => {
           </Table>
         </Paper>
       </Box>
+
+      {/* MODAL */}
+      <RegisterModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      />
     </Box>
   );
 };

@@ -1,24 +1,23 @@
 import { Box, Typography, IconButton } from "@mui/material";
-import NorthEastIcon from '@mui/icons-material/NorthEast';
+import NorthEastIcon from "@mui/icons-material/NorthEast";
 
 const CardWhy = ({ icon, title }) => {
   return (
-    
-    
     <Box
       sx={{
         bgcolor: "#E9E6FF",
         borderRadius: "20px",
-        p: 5,
+        p: 3,
+
         height: "100%",
+        minHeight: 180,
+
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
       }}
     >
-
-        
-      {/* Top */}
+      {/* TOP */}
       <Box display="flex" justifyContent="space-between">
         <Box
           sx={{
@@ -34,7 +33,7 @@ const CardWhy = ({ icon, title }) => {
           <Box component="img" src={icon} sx={{ width: 30, height: 30 }} />
         </Box>
 
-        <IconButton
+        {/* <IconButton
           sx={{
             bgcolor: "#DCD6FF",
             borderRadius: "12px",
@@ -43,17 +42,38 @@ const CardWhy = ({ icon, title }) => {
           }}
         >
           <NorthEastIcon sx={{ fontSize: 18 }} />
-        </IconButton>
+        </IconButton> */}
       </Box>
 
-      {/* Bottom */}
-      <Box mt={4}>
-        <Typography fontWeight={700} fontSize={20}>
+      {/* BOTTOM */}
+      <Box
+        mt={3}
+        sx={{
+          width: "100%", 
+          textAlign: "left", 
+        }}
+      >
+        <Typography
+     
+          sx={{
+            mb: 2,
+            fontSize: 25,
+            fontWeight: 700,
+            fontFamily: "Raleway, sans-serif",
+          }}
+        >
           {title}
         </Typography>
-        <Typography color="text.secondary" fontSize={14}>
+
+        {/* <Typography
+          color="text.secondary"
+          fontSize={14}
+          sx={{
+            textAlign: "left", // 🔥 ini juga
+          }}
+        >
           Lorem Ipsum
-        </Typography>
+        </Typography> */}
       </Box>
     </Box>
   );

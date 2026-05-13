@@ -35,7 +35,7 @@ const Faq = () => {
           {/* 🔥 BACKGROUND IMAGE */}
           <Box
             component="img"
-            src="/static/images/faq/faq-bg.png" // ganti sesuai asset lo
+            src="/static/images/gradient-faq.svg" // ganti sesuai asset lo
             sx={{
               position: "absolute",
               bottom: 0,
@@ -100,15 +100,16 @@ const Faq = () => {
 
           {/* 🔥 FAQ GRID */}
           <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: {
-                xs: "1fr",
-                md: "1fr 1fr",
-              },
-              gap: 3,
-            }}
-          >
+  sx={{
+    display: "grid",
+    gridTemplateColumns: {
+      xs: "1fr",
+      md: "1fr 1fr",
+    },
+    gap: 3,
+    alignItems: "start", // 🔥 INI KUNCINYA
+  }}
+>
             {faqData.map((item, i) => (
               <FaqItem key={i} text={item} />
             ))}

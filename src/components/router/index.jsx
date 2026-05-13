@@ -2,10 +2,14 @@ import { createBrowserRouter } from "react-router-dom";
 
 
 import LandingPage from "../landing-page";
-import ListTraining from "../list-training";
+
 import TrainingPage from "../training";
 import FaqHero from "../faq/components/hero";
 import FaqPage from "../faq";
+import AboutUsPage from "../about-us";
+import ListTraining from "../training-schedule";
+import TrainerPage from "../trainer";
+import TrainingDetailPage from "../detail-training";
 
 const router = createBrowserRouter([
   {
@@ -24,10 +28,18 @@ const router = createBrowserRouter([
       path: "/faq",
       element: <FaqPage />,
     },
-  //   {
-  //     path: "/faq",
-  //     element: <FaqPage />,
-  //   },
+    {
+      path: "/about-us",
+      element: <AboutUsPage />,
+    },
+    {
+      path: "/trainer",
+      element: <TrainerPage />,
+    },
+    {
+  path: "/training/:slug",
+  element: <TrainingDetailPage />,
+}
 ]);
 
 export default router;

@@ -11,7 +11,7 @@ const FaqHero = () => {
         background: "linear-gradient(135deg, #6C5DD3, #7F6BFF)",
         color: "#fff",
         pt: 18,
-        pb: 12,
+        pb: 5,
         textAlign: "center",
         overflow: "hidden",
       }}

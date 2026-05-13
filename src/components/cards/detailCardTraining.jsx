@@ -2,12 +2,12 @@ import { Box, Typography } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SearchIcon from "@mui/icons-material/Search";
 
-const DetailCard = ({ title, items = [] }) => {
+const DetailCard = ({ title, items = [], onClick }) => {
   return (
     <Box
       sx={{
         width: 370,
-        height: 500, 
+        height: 500,
         p: 3,
         borderRadius: "20px",
         backgroundColor: "#ffffff",
@@ -37,47 +37,62 @@ const DetailCard = ({ title, items = [] }) => {
 
       <Box sx={{ height: "1px", backgroundColor: "#e0e0e0", mb: 2 }} />
 
-      <Box sx={{ overflow: "hidden" }}> {/* 🔥 BIAR GAK NGE-STRETCH */}
-        {items.map((item, index) => (
-          <Box
-            key={index}
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              py: 1,
-              borderBottom:
-                index < items.length - 1 ? "1px solid #f0f0f0" : "none",
-            }}
-          >
-            <Typography
-              variant="body1"
-              sx={{
-                color: "#333",
-                pr: 1,
-                
+      <Box sx={{ overflow: "hidden" }}>
+  {items.map((item, index) => (
+    <Box
+      key={index}
+      onClick={() => onClick(item)}
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        py: 1.2,
+        cursor: "pointer",
+        transition: "0.2s",
 
-                // 🔥 BATASIN TEXT BIAR GAK NGERUSAK HEIGHT
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-              }}
-            >
-              {item}
-            </Typography>
+        borderBottom:
+          index < items.length - 1 ? "1px solid #f0f0f0" : "none",
 
-            <ArrowForwardIosIcon
-              sx={{
-                fontSize: 11,
-                mt: "3px",
-                flexShrink: 0,
-                color: "#666",
-              }}
-            />
-          </Box>
-        ))}
-      </Box>
+        "&:hover .item-text": {
+          color: "#6C5DD3",
+        },
+
+        "&:hover .item-icon": {
+          color: "#6C5DD3",
+          transform: "translateX(2px)",
+        },
+      }}
+    >
+      <Typography
+        className="item-text"
+        variant="body1"
+        sx={{
+          color: "#333",
+          pr: 1,
+          transition: "0.2s",
+
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}
+      >
+        {item}
+      </Typography>
+
+      <ArrowForwardIosIcon
+        className="item-icon"
+        sx={{
+          fontSize: 11,
+          mt: "3px",
+          flexShrink: 0,
+          color: "#666",
+          transition: "0.2s",
+        }}
+      />
+    </Box>
+  ))}
+</Box>
     </Box>
   );
 };

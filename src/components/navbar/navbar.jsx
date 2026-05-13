@@ -1,147 +1,196 @@
-import React from "react";
-import { Box, AppBar, Toolbar, Typography, Button } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  AppBar,
+  Toolbar,
+  Button,
+  IconButton,
+  Drawer,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
-import LandingPage from "../landing-page";
-import TrainingPage from "../training";
-import ListTraining from "../list-training";
 
-const Navbar = () => {
+const Navbar = ({ isOverlay = true }) => {
+  const [open, setOpen] = useState(false);
+
+  const menuItems = [
+    { label: "Home", to: "/" },
+    { label: "Training", to: "/training" },
+    { label: "Jadwal Training", to: "/training-list" },
+    { label: "FAQs", to: "/faq" },
+    { label: "About Us", to: "/about-us" },
+    { label: "Trainer", to: "/trainer" },
+  ];
+
   return (
-    <Box
+    <>
+      <Box
+        sx={{
+          px: 2,
+          py: 4,
+          position: isOverlay ? "absolute" : "relative",
+          top: isOverlay ? 0 : "auto",
+          left: 0,
+          width: "100%",
+          zIndex: 10,
+        }}
+      >
+        <Box sx={{ maxWidth: "1100px", mx: "auto" }}>
+          <AppBar
+            position="static"
+            elevation={0}
+            sx={{
+              backgroundColor: "#fff",
+              borderRadius: "50px",
+              px: 2,
+              py: 1,
+              color: "#000",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+            }}
+          >
+            <Toolbar sx={{ position: "relative" }}>
+              {/* LOGO */}
+              <Box
+                component="img"
+                src="/static/images/skillvate-logo.svg"
+                alt="Skillvate"
+                sx={{ height: 33 }}
+              />
+
+              {/* MENU DESKTOP */}
+              <Box
+  sx={{
+    position: "absolute",
+    left: "50%",
+    transform: "translateX(-50%)",
+    display: { xs: "none", md: "flex" },
+    whiteSpace: "nowrap",
+    flexWrap: "nowrap",
+    gap: { md: 1, lg: 2 }, // 🔥 jaga spacing biar muat
+  }}
+>
+  {menuItems.map((item, i) => (
+    <Button
+      key={i}
+      component={Link}
+      to={item.to}
       sx={{
-        px: 2,
-        py: 4,
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        zIndex: 10,
+        color: "#000",
+        textTransform: "none",
+        fontSize: { md: "14px", lg: "16px" }, // 🔥 ini kunci biar gak turun baris
+        fontFamily: "Inter, sans-serif",
+        position: "relative",
+        fontWeight: 400,
+        px: { md: 1, lg: 2 }, // 🔥 padding dikontrol
+
+        "&::after": {
+          content: '""',
+          position: "absolute",
+          left: "20%",
+          bottom: 6,
+          width: "60%",
+          height: "2px",
+          backgroundColor: "#6C5DD3",
+          transform: "scaleX(0)",
+          transition: "transform 0.25s ease",
+        },
+
+        "&:hover": {
+          color: "#6C5DD3",
+          fontWeight: 600,
+          backgroundColor: "transparent",
+        },
+
+        "&:hover::after": {
+          transform: "scaleX(1)",
+        },
       }}
     >
-      <Box sx={{ maxWidth: "1100px", mx: "auto" }}>
-        <AppBar
-          position="static"
-          elevation={0}
+      {item.label}
+    </Button>
+  ))}
+</Box>
+
+              {/* RIGHT */}
+              <Box sx={{ marginLeft: "auto", display: "flex", gap: 1 }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "30px",
+                    px: 3,
+                    backgroundColor: "#7560E2",
+                    textTransform: "none",
+                    display: { xs: "none", md: "inline-flex" },
+                  }}
+                >
+                  Daftar Training
+                </Button>
+
+                <IconButton
+                  onClick={() => setOpen(true)}
+                  sx={{ display: { xs: "flex", md: "none" } }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Box>
+            </Toolbar>
+          </AppBar>
+        </Box>
+      </Box>
+
+      {/* 🔥 DRAWER DARI ATAS */}
+      <Drawer
+        anchor="top" // 🔥 INI KUNCI
+        open={open}
+        onClose={() => setOpen(false)}
+        PaperProps={{
+          sx: {
+            borderBottomLeftRadius: 20,
+            borderBottomRightRadius: 20,
+          },
+        }}
+      >
+        <Box
           sx={{
-            backgroundColor: "#fff",
-            borderRadius: "50px",
-            px: 2,
-            py: 1,
-            color: "#000",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+            p: 3,
+            pt: 5,
+            textAlign: "center",
           }}
         >
-          <Toolbar sx={{ position: "relative" }}>
-            {/* Logo */}
-            <Typography variant="h3" sx={{ fontWeight: 700 }}>
-              Skillvate
-            </Typography>
-
-            {/* Menu */}
-            <Box
+          {menuItems.map((item, i) => (
+            <Button
+              key={i}
+              component={Link}
+              to={item.to}
+              onClick={() => setOpen(false)}
               sx={{
-                position: "absolute",
-                left: "50%",
-                transform: "translateX(-50%)",
-                display: "flex",
-                whiteSpace: "nowrap",
-                flexWrap: "nowrap",
+                display: "block",
+                width: "100%",
+                mb: 1.5,
+                color: "#000",
+                textTransform: "none",
+                fontSize: 16,
               }}
             >
-              <Button
-                component={Link}
-                to="/"
-                sx={{
-                  color: "#000",
-                  textTransform: "none",
-                  fontSize: "16px",
-                  width: "200",
-                  fontFamily: "Inter, sansserif",
-                }}
-              >
-                Home
-              </Button>
-              <Button
-              component={Link}
-                to="/training"
-                sx={{
-                  color: "#000",
-                  textTransform: "none",
-                  fontSize: "16px",
-                  width: "200",
-                  fontFamily: "Inter, sansserif",
-                }}
-              >
-                Training
-              </Button>
-              <Button
-              component={Link}
-                to="/training-list"
-                sx={{
-                  color: "#000",
-                  textTransform: "none",
-                  fontSize: "16px",
-                  width: "200",
-                  fontFamily: "Inter, sansserif",
-                }}
-              >
-                Jadwal Training
-              </Button>
-              <Button
-              component={Link}
-                to="/faq"
-                sx={{
-                  color: "#000",
-                  textTransform: "none",
-                  fontSize: "16px",
-                  width: "200",
-                  fontFamily: "Inter, sansserif",
-                }}
-              >
-                FAQs
-              </Button>
-              <Button
-                sx={{
-                  color: "#000",
-                  textTransform: "none",
-                  fontSize: "16px",
-                  width: "200",
-                  fontFamily: "Inter, sansserif",
-                }}
-              >
-                About Us
-              </Button>
-              <Button
-                sx={{
-                  color: "#000",
-                  textTransform: "none",
-                  fontSize: "16px",
-                  width: "200",
-                  fontFamily: "Inter, sansserif",
-                }}
-              >
-                Trainer
-              </Button>
-            </Box>
+              {item.label}
+            </Button>
+          ))}
 
-            {/* Button kanan */}
-            <Box sx={{ marginLeft: "auto" }}>
-              <Button
-                variant="contained"
-                sx={{
-                  borderRadius: "30px",
-                  px: 3,
-                  backgroundColor: "#7560E2",
-                  textTransform: "none",
-                }}
-              >
-                Daftar Training
-              </Button>
-            </Box>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </Box>
+          <Button
+            variant="contained"
+            fullWidth
+            sx={{
+              mt: 2,
+              borderRadius: "30px",
+              backgroundColor: "#7560E2",
+              textTransform: "none",
+            }}
+          >
+            Daftar Training
+          </Button>
+        </Box>
+      </Drawer>
+    </>
   );
 };
 
