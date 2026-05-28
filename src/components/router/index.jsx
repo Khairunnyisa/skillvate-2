@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       element: <TrainerPage />,
     },
     {
-  path: "/training/:slug",
+  path: "/training/:trainingId",
   element: <TrainingDetailPage />,
 }
 ]);

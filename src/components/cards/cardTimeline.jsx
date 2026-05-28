@@ -4,23 +4,56 @@ const TimelineCard = ({ title, direction }) => {
   return (
     <Box
       sx={{
-        width: 430,
-        minHeight: 170,
+        width: {
+          xs: "100%",
+          sm: 320,
+          md: 430,
+        },
+
+        minHeight: {
+          xs: "auto",
+          md: 170,
+        },
+
         bgcolor: "#F1F5F9",
-        borderRadius: "14px",
-        p: 3,
+
+        borderRadius: {
+          xs: "12px",
+          md: "14px",
+        },
+
+        p: {
+          xs: 2,
+          md: 3,
+        },
+
         position: "relative",
 
         ...(direction === "right" && {
           "&::after": {
             content: '""',
             position: "absolute",
-            right: -18,
+            right: {
+              xs: -12,
+              md: -18,
+            },
             top: "50%",
             transform: "translateY(-50%)",
-            borderTop: "18px solid transparent",
-            borderBottom: "18px solid transparent",
-            borderLeft: "18px solid #F1F5F9",
+
+            borderTop: {
+              xs: "12px solid transparent",
+              md: "18px solid transparent",
+            },
+
+            borderBottom: {
+              xs: "12px solid transparent",
+              md: "18px solid transparent",
+            },
+
+            borderLeft: {
+              xs: "12px solid #F1F5F9",
+              md: "18px solid #F1F5F9",
+            },
           },
         }),
 
@@ -28,20 +61,45 @@ const TimelineCard = ({ title, direction }) => {
           "&::after": {
             content: '""',
             position: "absolute",
-            left: -18,
+            left: {
+              xs: -12,
+              md: -18,
+            },
             top: "50%",
             transform: "translateY(-50%)",
-            borderTop: "18px solid transparent",
-            borderBottom: "18px solid transparent",
-            borderRight: "18px solid #F1F5F9",
+
+            borderTop: {
+              xs: "12px solid transparent",
+              md: "18px solid transparent",
+            },
+
+            borderBottom: {
+              xs: "12px solid transparent",
+              md: "18px solid transparent",
+            },
+
+            borderRight: {
+              xs: "12px solid #F1F5F9",
+              md: "18px solid #F1F5F9",
+            },
           },
         }),
       }}
     >
       <Typography
-      variant="h4"
+        variant="h4"
         sx={{
-         
+          fontSize: {
+            xs: "1rem",
+            sm: "1.1rem",
+            md: "1.5rem",
+          },
+
+          lineHeight: {
+            xs: 1.5,
+            md: 1.7,
+          },
+
           fontWeight: 600,
         }}
       >

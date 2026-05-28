@@ -49,7 +49,7 @@ const FaqHero = () => {
             mb: 1,
           }}
         >
-          Your Question, Your Expertise
+          Frequently Asked Question
         </Typography>
 
         {/* Subtitle */}
@@ -62,7 +62,7 @@ const FaqHero = () => {
             mb: 5,
           }}
         >
-          Skillvate menghadirkan berbagai training dengan informasi yang jelas biar kamu fokus belajar, bukan cari-cari detail.
+          Quick answer to question you may ask
         </Typography>
 
         {/* 🔥 FILTER BOX */}

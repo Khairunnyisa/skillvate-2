@@ -3,11 +3,19 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import PersonIcon from "@mui/icons-material/Person";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import useGetDetailTraining from "../../../../hooks/getDetailTraining";
 
-export default function TrainingDetailContent({ title }) {
+
+export default function TrainingDetailContent({ trainingId }) {
+  const { data, isLoading } =useGetDetailTraining({
+    condition: true,
+    trainingId: trainingId
+  });
+
+  console.log(data)
+
   return (
     <>
-      {/* 🔥 CARD UTAMA */}
       <Box
         sx={{
           bgcolor: "#fff",
@@ -17,7 +25,7 @@ export default function TrainingDetailContent({ title }) {
           mb: 4, // kasih jarak ke bawah
         }}
       >
-        {/* TITLE */}
+       
         <Typography
           variant="h3"
           lineHeight={1.5}
@@ -25,13 +33,13 @@ export default function TrainingDetailContent({ title }) {
           textAlign="center"
           mb={2}
         >
-          {title}
+          {data?.name}
         </Typography>
 
         {/* BADGE */}
         <Box sx={{ display: "flex", justifyContent: "center",  }}>
           <Chip
-            label="Cloud"
+            label={data?.pillar?.name}
             sx={{
               bgcolor: "#6C5DD3",
               color: "#fff",
@@ -41,21 +49,42 @@ export default function TrainingDetailContent({ title }) {
           />
         </Box>
 
+    
         {/* INFO ROW */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            textAlign: "center",
-            mb: 4,
-            flexWrap: "wrap",
-          }}
-        >
-          <InfoItem icon={<PersonIcon />} label="Trainer" value="Basic" />
-          <InfoItem icon={<BarChartIcon />} label="Tingkatan" value="Basic" />
-          <InfoItem icon={<AccessTimeIcon />} label="Durasi" value="3 Jam" />
-          <InfoItem icon={<CheckCircleIcon />} label="Sertifikat" value="Yes" />
-        </Box>
+<Box
+  sx={{
+    display: "flex",
+    justifyContent: "space-between",
+    textAlign: "center",
+    mb: 4,
+    mt: 4,
+    flexWrap: "wrap",
+  }}
+>
+  <InfoItem
+    icon={<PersonIcon />}
+    label="Trainer"
+    value={data?.trainers?.length || 0}
+  />
+
+  <InfoItem
+    icon={<BarChartIcon />}
+    label="Tingkatan"
+    value={data?.level}
+  />
+
+  <InfoItem
+    icon={<AccessTimeIcon />}
+    label="Durasi"
+    value={`${data?.duration} Jam`}
+  />
+
+  <InfoItem
+    icon={<CheckCircleIcon />}
+    label="Sertifikat"
+    value={data?.certificate ? "Yes" : "No"}
+  />
+</Box>
 
         {/* IMAGE */}
         <Box

@@ -1,3 +1,4 @@
+import useGetAboutUs from "../../hooks/getAboutUs";
 import Footer from "../landing-page/components/footer";
 import Navbar from "../navbar/navbar";
 import AboutHero from "./components/hero";
@@ -8,12 +9,18 @@ import VisionMission from "./components/vision-mission";
 
 
 const AboutUsPage = () => {
+
+  const { data, isLoading, error } = useGetAboutUs({
+    condition: true,
+  });
+
+  
   return (
     <>
       <Navbar/>
-      <AboutHero/>
-      <StatsSection/>
-      <VisionMission/>
+      <AboutHero data={data}/>
+      <StatsSection data={data}/>
+      <VisionMission data={data}/>
       <HistorySection/>
       <Footer/>
     </>

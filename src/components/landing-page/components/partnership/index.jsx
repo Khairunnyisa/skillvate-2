@@ -1,23 +1,26 @@
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+} from "@mui/material";
 
-const logos = [
-  "/static/images/partnership/bank-mega.svg",
-  "/static/images/partnership/bank-mega.svg",
-  "/static/images/partnership/bank-mega.svg",
-  "/static/images/partnership/bank-mega.svg",
-  "/static/images/partnership/bank-mega.svg",
-  "/static/images/partnership/bank-mega.svg",
-  "/static/images/partnership/bank-mega.svg",
-  "/static/images/partnership/bank-mega.svg",
-];
+import useGetPartner from "../../../../hooks/getPartner";
 
 const Partnership = () => {
+  const { data, isLoading } = useGetPartner({
+    condition: true,
+  });
+
+  console.log(data);
+
   return (
     <Box
+      id="next-section"
       sx={{
         mt: 35,
         py: 10,
-        backgroundImage: "url('/static/images/partnership/bg-partnership.png')",
+        backgroundImage:
+          "url('/static/images/partnership/bg-partnership.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -26,7 +29,7 @@ const Partnership = () => {
         maxWidth="lg"
         sx={{
           px: { xs: 2, md: 4 },
-          textAlign: "center", // biar rapi di mobile & desktop
+          textAlign: "center",
         }}
       >
         {/* TITLE */}
@@ -39,7 +42,10 @@ const Partnership = () => {
           }}
         >
           Our{" "}
-          <Box component="span" sx={{ color: "primary.main" }}>
+          <Box
+            component="span"
+            sx={{ color: "primary.main" }}
+          >
             Partnership
           </Box>
         </Typography>
@@ -49,26 +55,27 @@ const Partnership = () => {
           sx={{
             display: "grid",
             gridTemplateColumns: {
-              xs: "repeat(2, 1fr)", // 📱 mobile
-              sm: "repeat(3, 1fr)", // tablet kecil
-              md: "repeat(4, 1fr)", // desktop (TETAP SAMA)
+              xs: "repeat(2, 1fr)",
+              sm: "repeat(3, 1fr)",
+              md: "repeat(4, 1fr)",
             },
-            gap: { xs: 4, md: 6 }, // 🔥 spacing responsive
+            gap: { xs: 4, md: 6 },
             alignItems: "center",
             justifyItems: "center",
           }}
         >
-          {logos.map((logo, index) => (
+          {data?.map((item) => (
             <Box
-              key={index}
+              key={item.id}
               component="img"
-              src={logo}
+              src={`http://localhost:1337${item.logo?.url}`}
               sx={{
-                height: { xs: 30, md: 40 }, // 🔥 biar gak kegedean di mobile
+                height: { xs: 100, md: 110 },
                 objectFit: "contain",
-                filter: "grayscale(100%)",
-                opacity: 0.7,
+                // filter: "grayscale(100%)",
+                opacity: 1,
                 transition: "0.3s",
+
                 "&:hover": {
                   filter: "grayscale(0%)",
                   opacity: 1,

@@ -1,4 +1,7 @@
-import { Box, Container, Typography, Button } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
 import HeroSlider from "./heroSlider";
 
 const Hero = () => {
@@ -7,7 +10,7 @@ const Hero = () => {
       sx={{
         position: "relative",
         bgcolor: "#F3F1FF",
-        pt: { xs: 12, md: 20 },
+        pt: { xs: 18, md: 20 },
         pb: { xs: 30, md: 23 },
         overflow: "visible",
       }}
@@ -86,25 +89,101 @@ const Hero = () => {
         <Typography
           variant="body1"
           sx={{
-            mb: 4,
+            mb: 5,
             color: "#666",
             fontSize: { xs: 14, md: 16 },
           }}
         >
-          Professional training & certification with hands-on learning experiences
+          Professional training & certification with hands-on learning
+          experiences
         </Typography>
 
+        {/* SCROLL BUTTON */}
         <Box
           sx={{
             display: "flex",
-            gap: 2,
             justifyContent: "center",
-            flexDirection: { xs: "column", sm: "row" },
-            alignItems: "center",
           }}
         >
-          <Button variant="contained">Lorem Ipsum</Button>
-          <Button variant="outlined">Learn More</Button>
+          <Box
+            onClick={() => {
+              const section = document.getElementById("next-section");
+
+              if (section) {
+                section.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }
+            }}
+            sx={{
+              position: "relative",
+              width: 55,
+              height: 55,
+              borderRadius: "50%",
+
+              background:
+                "linear-gradient(135deg, #8B7BFF 0%, #7560E2 50%, #5B43D6 100%)",
+
+              boxShadow: "0 10px 30px rgba(117, 96, 226, 0.35)",
+
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              transition: "all 0.35s ease",
+              zIndex: 5,
+
+              "&:hover": {
+                transform: "translateY(5px) scale(1.05)",
+                boxShadow: "0 14px 40px rgba(117, 96, 226, 0.45)",
+              },
+
+              // OUTER PULSE
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                inset: 0,
+                borderRadius: "50%",
+                border: "3px solid rgba(117, 96, 226, 0.35)",
+                animation: "pulse 2.2s infinite",
+              },
+
+              // SECOND PULSE
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                inset: 0,
+                borderRadius: "50%",
+                border: "3px solid rgba(168, 149, 255, 0.2)",
+                animation: "pulse 2.2s infinite 1.1s",
+              },
+
+              "@keyframes pulse": {
+                "0%": {
+                  transform: "scale(1)",
+                  opacity: 1,
+                },
+
+                "70%": {
+                  opacity: 0.4,
+                },
+
+                "100%": {
+                  transform: "scale(1.9)",
+                  opacity: 0,
+                },
+              },
+            }}
+          >
+            <KeyboardArrowDownIcon
+              sx={{
+                color: "#fff",
+                fontSize: 34,
+                zIndex: 2,
+                filter: "drop-shadow(0 2px 10px rgba(255,255,255,0.35))",
+              }}
+            />
+          </Box>
         </Box>
       </Container>
 
@@ -140,8 +219,8 @@ const Hero = () => {
         {/* SLIDER */}
         <Box
           sx={{
-            width: { xs: "100%", sm: 360, md: 550 }, // 🔥 full width di mobile
-            maxWidth: 550, // 🔥 biar gak melebar liar
+            width: { xs: "100%", sm: 360, md: 550 },
+            maxWidth: 550,
             height: { xs: 180, sm: 220, md: 320 },
             borderRadius: 1,
             overflow: "hidden",

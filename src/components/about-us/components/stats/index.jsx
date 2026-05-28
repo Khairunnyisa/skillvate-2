@@ -1,16 +1,34 @@
 import { Box, Typography, Container } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
-const statsData = [
-  { value: 280, suffix: "+", label: "Class Delivered" },
-  { value: 1200, suffix: "+", label: "Students" },
-  { value: 215, suffix: "+", label: "Enterprise Customer" },
-  { value: 999, suffix: "+", label: "Lorem Ipsum" },
-];
 
-const StatsSection = () => {
+
+const StatsSection = (data) => {
   const ref = useRef(null);
   const [start, setStart] = useState(false);
+
+  const statsData = [
+    {
+      value: data.data?.class,
+      suffix: "+",
+      label: "Class Delivered",
+    },
+    {
+      value: data.data?.students,
+      suffix: "+",
+      label: "Students",
+    },
+    {
+      value: data.data?.enterprise,
+      suffix: "+",
+      label: "Enterprise Customer",
+    },
+    {
+      value: data.data?.loremIpsum,
+      suffix: "+",
+      label: "Lorem Ipsum",
+    },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(

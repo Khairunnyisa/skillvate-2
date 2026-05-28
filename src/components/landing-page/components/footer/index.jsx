@@ -36,11 +36,11 @@ const Footer = () => {
           {/* MENU 1 */}
           <Box>
             {[
-              "Application Security",
-              "Dynamic Security",
-              "Mobile Security",
-              "Container Security",
-              "Infrastructure Security",
+              "Home",
+              "Training",
+              "Jadwal Training",
+              "FAQs",
+              "About Us",
             ].map((item) => (
               <Typography
                 key={item}
@@ -87,7 +87,7 @@ const Footer = () => {
             </Typography>
 
             <Typography sx={{ fontSize: 14, opacity: 0.8 }}>
-              info@clearants.com
+              info@i-3.co.id
             </Typography>
 
             <Typography sx={{ fontSize: 14, opacity: 0.8, mb: 2 }}>
@@ -99,7 +99,7 @@ const Footer = () => {
             </Typography>
 
             <Typography sx={{ fontSize: 14, opacity: 0.8, lineHeight: 1.6 }}>
-              Graha BIP 6th FloorJl Jend. Gatot Subroto Kav.23 Jakarta 12930,
+              Graha BIP 9th FloorJl Jend. Gatot Subroto Kav.23 Jakarta 12930,
               Indonesia
             </Typography>
           </Box>

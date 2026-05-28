@@ -3,7 +3,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import SectionBadge from "../../../badge/sectionBadge";
 
-const TrainerHero = () => {
+const TrainerHero = (data) => {
+  console.log(data)
   return (
     <Box
       sx={{
@@ -56,13 +57,13 @@ const TrainerHero = () => {
         <Typography
           variant="body1"
           sx={{
-            maxWidth: "600px",
+            maxWidth: "900px",
             mx: "auto",
             opacity: 0.9,
             mb: 5,
           }}
         >
-          Skillvate menghadirkan berbagai training dengan informasi yang jelas biar kamu fokus belajar, bukan cari-cari detail.
+          Skillvate training center is your ultimate destination to empower IT professionals with the skills and knowledge to unlock their full potential and advance their careers with top-notch training resources and expert guidance.
         </Typography>
 
         {/* 🔥 FILTER BOX */}

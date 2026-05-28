@@ -1,19 +1,26 @@
-import { Box, Container, Typography, Grid, Button } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Button,
+} from "@mui/material";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
 import FaqItem from "../../../cards/cardFaq";
 import SectionBadge from "../../../badge/sectionBadge";
+import useGetFaq from "../../../../hooks/getFAQs";
 
-const faqData = [
-  "Networking Opportunities",
-  "Affordable Pricing",
-  "Career Support Services",
-  "Personalized Learning Paths",
-  "Access to Exclusive Resources",
-  "Community Engagement",
-];
+
 
 const Faq = () => {
+  const { data, isLoading } = useGetFaq({
+    condition: true,
+  });
+
+  console.log(data);
+
   return (
     <Box
       sx={{
@@ -21,7 +28,10 @@ const Faq = () => {
         bgcolor: "#F9FAFB",
       }}
     >
-      <Container maxWidth="lg" sx={{ px: { xs: 2, md: 4 } }}>
+      <Container
+        maxWidth="lg"
+        sx={{ px: { xs: 2, md: 4 } }}
+      >
         {/* CARD WRAPPER */}
         <Box
           sx={{
@@ -32,10 +42,10 @@ const Faq = () => {
             overflow: "hidden",
           }}
         >
-          {/* 🔥 BACKGROUND IMAGE */}
+          {/* BACKGROUND IMAGE */}
           <Box
             component="img"
-            src="/static/images/gradient-faq.svg" // ganti sesuai asset lo
+            src="/static/images/gradient-faq.svg"
             sx={{
               position: "absolute",
               bottom: 0,
@@ -46,7 +56,7 @@ const Faq = () => {
             }}
           />
 
-          {/* 🔥 HEADER */}
+          {/* HEADER */}
           <Grid
             container
             spacing={4}
@@ -56,8 +66,16 @@ const Faq = () => {
           >
             {/* LEFT */}
             <Grid item xs={12} md={8}>
-              <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
-                <SectionBadge text="FAQ" variant="white" />
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <SectionBadge
+                  text="FAQ"
+                  variant="white"
+                />
               </Box>
 
               <Typography variant="h2" mb={2}>
@@ -70,8 +88,9 @@ const Faq = () => {
                   maxWidth: 500,
                 }}
               >
-                Siker menawarkan berbagai peluang yang sesuai dengan
-                keterampilan dan ambisi Kamu. Daftar hari ini dan ambil langkah
+                Siker menawarkan berbagai peluang
+                yang sesuai dengan keterampilan dan
+                ambisi Kamu.
               </Typography>
             </Grid>
 
@@ -88,6 +107,7 @@ const Faq = () => {
                   py: 1.5,
                   textTransform: "none",
                   boxShadow: "none",
+
                   "&:hover": {
                     bgcolor: "#f5f5f5",
                   },
@@ -98,20 +118,24 @@ const Faq = () => {
             </Grid>
           </Grid>
 
-          {/* 🔥 FAQ GRID */}
+          {/* FAQ GRID */}
           <Box
-  sx={{
-    display: "grid",
-    gridTemplateColumns: {
-      xs: "1fr",
-      md: "1fr 1fr",
-    },
-    gap: 3,
-    alignItems: "start", // 🔥 INI KUNCINYA
-  }}
->
-            {faqData.map((item, i) => (
-              <FaqItem key={i} text={item} />
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                md: "1fr 1fr",
+              },
+              gap: 3,
+              alignItems: "start",
+            }}
+          >
+            {data?.map((item) => (
+              <FaqItem
+                key={item.id}
+                question={item.question}
+                answer={item.answer}
+              />
             ))}
           </Box>
         </Box>

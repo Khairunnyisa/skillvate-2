@@ -30,7 +30,7 @@ const TrainingCard = () => {
             color: "white",
           }}
         >
-          Jadwal Training Terkini
+          Upcoming Training Schedule
         </Typography>
 
         <Typography
@@ -45,9 +45,7 @@ const TrainingCard = () => {
             color: "white",
           }}
         >
-          Skillvate menawarkan berbagai peluang yang sesuai dengan keterampilan
-          dan ambisi Kamu. Daftar hari ini dan ambil langkah berikutnya menuju
-          karier Impian. Masa depan Kamu dimulai di sini.
+          Never missed our training agenda and set your alarm on! 
         </Typography>
 
         <Grid container spacing={3} mt={4} justifyContent="center">

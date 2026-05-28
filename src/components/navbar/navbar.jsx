@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Box,
   AppBar,
@@ -7,11 +8,19 @@ import {
   IconButton,
   Drawer,
 } from "@mui/material";
+
 import MenuIcon from "@mui/icons-material/Menu";
+
 import { Link } from "react-router-dom";
+import RegisterModal from "../training-schedule/components/register-modal";
+
+
 
 const Navbar = ({ isOverlay = true }) => {
   const [open, setOpen] = useState(false);
+
+  // 🔥 modal state
+  const [openModal, setOpenModal] = useState(false);
 
   const menuItems = [
     { label: "Home", to: "/" },
@@ -28,10 +37,15 @@ const Navbar = ({ isOverlay = true }) => {
         sx={{
           px: 2,
           py: 4,
+
           position: isOverlay ? "absolute" : "relative",
+
           top: isOverlay ? 0 : "auto",
+
           left: 0,
+
           width: "100%",
+
           zIndex: 10,
         }}
       >
@@ -41,10 +55,14 @@ const Navbar = ({ isOverlay = true }) => {
             elevation={0}
             sx={{
               backgroundColor: "#fff",
+
               borderRadius: "50px",
+
               px: 2,
               py: 1,
+
               color: "#000",
+
               boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
             }}
           >
@@ -59,76 +77,131 @@ const Navbar = ({ isOverlay = true }) => {
 
               {/* MENU DESKTOP */}
               <Box
-  sx={{
-    position: "absolute",
-    left: "50%",
-    transform: "translateX(-50%)",
-    display: { xs: "none", md: "flex" },
-    whiteSpace: "nowrap",
-    flexWrap: "nowrap",
-    gap: { md: 1, lg: 2 }, // 🔥 jaga spacing biar muat
-  }}
->
-  {menuItems.map((item, i) => (
-    <Button
-      key={i}
-      component={Link}
-      to={item.to}
-      sx={{
-        color: "#000",
-        textTransform: "none",
-        fontSize: { md: "14px", lg: "16px" }, // 🔥 ini kunci biar gak turun baris
-        fontFamily: "Inter, sans-serif",
-        position: "relative",
-        fontWeight: 400,
-        px: { md: 1, lg: 2 }, // 🔥 padding dikontrol
+                sx={{
+                  position: "absolute",
 
-        "&::after": {
-          content: '""',
-          position: "absolute",
-          left: "20%",
-          bottom: 6,
-          width: "60%",
-          height: "2px",
-          backgroundColor: "#6C5DD3",
-          transform: "scaleX(0)",
-          transition: "transform 0.25s ease",
-        },
+                  left: "50%",
 
-        "&:hover": {
-          color: "#6C5DD3",
-          fontWeight: 600,
-          backgroundColor: "transparent",
-        },
+                  transform: "translateX(-50%)",
 
-        "&:hover::after": {
-          transform: "scaleX(1)",
-        },
-      }}
-    >
-      {item.label}
-    </Button>
-  ))}
-</Box>
+                  display: { xs: "none", md: "flex" },
+
+                  whiteSpace: "nowrap",
+
+                  flexWrap: "nowrap",
+
+                  gap: { md: 1, lg: 2 },
+                }}
+              >
+                {menuItems.map((item, i) => (
+                  <Button
+                    key={i}
+                    component={Link}
+                    to={item.to}
+                    sx={{
+                      color: "#000",
+
+                      textTransform: "none",
+
+                      fontSize: {
+                        md: "14px",
+                        lg: "16px",
+                      },
+
+                      fontFamily: "Inter, sans-serif",
+
+                      position: "relative",
+
+                      fontWeight: 400,
+
+                      px: {
+                        md: 1,
+                        lg: 2,
+                      },
+
+                      "&::after": {
+                        content: '""',
+
+                        position: "absolute",
+
+                        left: "20%",
+
+                        bottom: 6,
+
+                        width: "60%",
+
+                        height: "2px",
+
+                        backgroundColor: "#6C5DD3",
+
+                        transform: "scaleX(0)",
+
+                        transition: "transform 0.25s ease",
+                      },
+
+                      "&:hover": {
+                        color: "#6C5DD3",
+
+                        fontWeight: 600,
+
+                        backgroundColor: "transparent",
+                      },
+
+                      "&:hover::after": {
+                        transform: "scaleX(1)",
+                      },
+                    }}
+                  >
+                    {item.label}
+                  </Button>
+                ))}
+              </Box>
 
               {/* RIGHT */}
-              <Box sx={{ marginLeft: "auto", display: "flex", gap: 1 }}>
+              <Box
+                sx={{
+                  marginLeft: "auto",
+
+                  display: "flex",
+
+                  gap: 1,
+                }}
+              >
+                {/* 🔥 OPEN MODAL */}
                 <Button
                   variant="contained"
+                  onClick={() => setOpenModal(true)}
                   sx={{
                     borderRadius: "30px",
+
                     px: 3,
+
                     backgroundColor: "#7560E2",
+
                     textTransform: "none",
-                    display: { xs: "none", md: "inline-flex" },
+
+                    display: {
+                      xs: "none",
+                      md: "inline-flex",
+                    },
+
+                    "&:hover": {
+                      backgroundColor: "#644DDB",
+                    },
                   }}
                 >
                   Daftar Training
                 </Button>
 
+                {/* MOBILE MENU */}
                 <IconButton
                   onClick={() => setOpen(true)}
-                  sx={{ display: { xs: "flex", md: "none" } }}
+                  sx={{
+                    display: {
+                      xs: "flex",
+                      md: "none",
+                    },
+                  }}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -138,9 +211,9 @@ const Navbar = ({ isOverlay = true }) => {
         </Box>
       </Box>
 
-      {/* 🔥 DRAWER DARI ATAS */}
+      {/* 🔥 MOBILE DRAWER */}
       <Drawer
-        anchor="top" // 🔥 INI KUNCI
+        anchor="top"
         open={open}
         onClose={() => setOpen(false)}
         PaperProps={{
@@ -165,10 +238,15 @@ const Navbar = ({ isOverlay = true }) => {
               onClick={() => setOpen(false)}
               sx={{
                 display: "block",
+
                 width: "100%",
+
                 mb: 1.5,
+
                 color: "#000",
+
                 textTransform: "none",
+
                 fontSize: 16,
               }}
             >
@@ -176,20 +254,38 @@ const Navbar = ({ isOverlay = true }) => {
             </Button>
           ))}
 
+          {/* 🔥 MOBILE OPEN MODAL */}
           <Button
             variant="contained"
             fullWidth
+            onClick={() => {
+              setOpen(false);
+              setOpenModal(true);
+            }}
             sx={{
               mt: 2,
+
               borderRadius: "30px",
+
               backgroundColor: "#7560E2",
+
               textTransform: "none",
+
+              "&:hover": {
+                backgroundColor: "#644DDB",
+              },
             }}
           >
             Daftar Training
           </Button>
         </Box>
       </Drawer>
+
+      {/* 🔥 MODAL */}
+      <RegisterModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      />
     </>
   );
 };

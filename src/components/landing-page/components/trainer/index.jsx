@@ -149,11 +149,11 @@ const Trainer = () => {
         {/* 🔥 TEXT BAWAH */}
         <Box mt={15}>
           <Typography variant="h2" fontWeight={700}>
-            Trusted By <span style={{ color: "#6C5CE7", mb: 4}}>Trainers</span>
+            Trusted By <span style={{ color: "#6C5CE7", mb: 4}}>Professionals</span>
           </Typography>
 
           <Typography variant="h3" sx={{ color: "#6B7280", mb: 4 }}>
-            From Various Industries
+            across various technology domains.
           </Typography>
 
         

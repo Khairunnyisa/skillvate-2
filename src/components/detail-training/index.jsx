@@ -6,10 +6,9 @@ import Navbar from "../navbar/navbar";
 import Footer from "../landing-page/components/footer";
 
 export default function TrainingDetailPage() {
-  const { slug } = useParams();
-  const location = useLocation();
+  const { trainingId } = useParams();
 
-  const title = location.state?.title;
+  console.log(trainingId, "id")
 
   return (
     <Box sx={{ bgcolor: "#F5F6FA", minHeight: "100vh" }}>
@@ -39,7 +38,7 @@ export default function TrainingDetailPage() {
               minWidth: 0,
             }}
           >
-            <TrainingDetailContent title={title || slug} />
+            <TrainingDetailContent trainingId={trainingId} />
           </Box>
         </Box>
       </Container>

@@ -51,7 +51,7 @@ const theme = createTheme({
       fontSize: 14,
       lineHeight: 1.6,
     },
-    body2: {
+    body3: {
       fontSize: 12,
       lineHeight: 1.6,
     },

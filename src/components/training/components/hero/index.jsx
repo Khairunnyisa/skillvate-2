@@ -49,7 +49,7 @@ const TrainingHero = () => {
             mb: 1,
           }}
         >
-          Pilih Training yang anda ingin ikuti!
+          Find the Right Training for Your Growth
         </Typography>
 
         {/* Subtitle */}
@@ -62,8 +62,7 @@ const TrainingHero = () => {
             mb: 5,
           }}
         >
-          Skillvate menghadirkan berbagai training dengan informasi yang jelas
-          biar kamu fokus belajar, bukan cari-cari detail.
+          Explore hands-on training and certification programs designed to help professionals stay ahead in today’s digital landscape.
         </Typography>
 
         {/* 🔥 FILTER BOX */}
@@ -139,6 +138,15 @@ const inputStyle = {
 
     "& fieldset": {
       border: "none",
+    },
+
+
+    "& input::placeholder": {
+      opacity: 1,
+      fontSize: "16px",
+      fontWeight: 400,
+      fontFamily: "inherit",
+      color: "#666",
     },
   },
 };

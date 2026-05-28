@@ -1,6 +1,6 @@
 import { Box, Typography, Container } from "@mui/material";
 
-const VisionMission = () => {
+const VisionMission = (data) => {
   return (
     <Box
       sx={{
@@ -24,7 +24,7 @@ const VisionMission = () => {
           <Box>
             {/* LABEL */}
             <Typography
-            variant="h2"
+              variant="h2"
               sx={{
                 color: "#7C6CF2",
                 mb: 3,
@@ -35,31 +35,16 @@ const VisionMission = () => {
 
             {/* TITLE */}
             <Typography
-            variant="h1"
+              variant="h1"
               sx={{
-                
                 fontWeight: 700,
-                lineHeight: 1.15,
+                lineHeight: 1.5,
                 color: "#000",
                 mb: 4,
                 maxWidth: "620px",
               }}
             >
-              Sejuta digital talent untuk Indonesia
-            </Typography>
-
-            {/* DESC */}
-            <Typography
-            variant="body1"
-              sx={{
-                
-                lineHeight: 1.9,
-                color: "#1F2937",
-                maxWidth: "650px",
-              }}
-            >
-              Visi kami adalah untuk menghasilkan sejuta digital talent
-              untuk Indonesia melalui pendidikan vokasi digital.
+              {data.data?.vision}
             </Typography>
           </Box>
 
@@ -67,45 +52,40 @@ const VisionMission = () => {
           <Box>
             {/* LABEL */}
             <Typography
-            variant="h2"
+              variant="h2"
               sx={{
                 color: "#7C6CF2",
-               
-              
                 mb: 3,
               }}
             >
               Misi
             </Typography>
 
-            {/* TITLE */}
-            <Typography
-            variant="h1"
+            <Box
               sx={{
-                fontWeight: 700,
-                lineHeight: 1.15,
-                color: "#000",
-                mb: 4,
-                maxWidth: "700px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
               }}
             >
-              "To train, certify, and connect youth to jobs"
-            </Typography>
-
-            {/* DESC */}
-            <Typography
-            variant="body1"
-              sx={{
-                
-                lineHeight: 1.9,
-                color: "#1F2937",
-                maxWidth: "700px",
-              }}
-            >
-              Itulah misi kami. Dengan proses pembelajaran yang menarik
-              dan efektif, siapapun dapat belajar digital skills,
-              mendapatkan sertifikasi, dan tentunya siap kerja!
-            </Typography>
+              {data.data?.mission
+                ?.split("\n")
+                .filter((item) => item.trim() !== "")
+                .map((item, index) => (
+                  <Typography
+                    key={index}
+                    variant="h3"
+                    sx={{
+                      fontWeight: 700,
+                      lineHeight: 1.5,
+                      color: "#000",
+                      maxWidth: "620px",
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                ))}
+            </Box>
           </Box>
         </Box>
       </Container>
